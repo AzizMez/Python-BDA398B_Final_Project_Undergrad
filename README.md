@@ -1,3 +1,5 @@
+This is my undergraduate project for my AI for Business course at the Lebanese American University. It looked at a kaggle dataset on bancruptcy in Taiwan.
+
 ```python
 import pandas as pd
 import numpy as np
@@ -1492,189 +1494,6 @@ print("\nResults for all 'k' values:")
 for k, mean_test_score in zip(param_grid['select_features__k'], grid_search.cv_results_['mean_test_score']):
     print(f"k = {k}: {mean_test_score:.4f}")
 ```
-
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:111: UserWarning: Features [93] are constant.
-      warnings.warn("Features %s are constant." % constant_features_idx, UserWarning)
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:112: RuntimeWarning: invalid value encountered in divide
-      f = msb / msw
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:111: UserWarning: Features [93] are constant.
-      warnings.warn("Features %s are constant." % constant_features_idx, UserWarning)
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:112: RuntimeWarning: invalid value encountered in divide
-      f = msb / msw
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:111: UserWarning: Features [93] are constant.
-      warnings.warn("Features %s are constant." % constant_features_idx, UserWarning)
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:112: RuntimeWarning: invalid value encountered in divide
-      f = msb / msw
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:111: UserWarning: Features [93] are constant.
-      warnings.warn("Features %s are constant." % constant_features_idx, UserWarning)
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:112: RuntimeWarning: invalid value encountered in divide
-      f = msb / msw
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:111: UserWarning: Features [93] are constant.
-      warnings.warn("Features %s are constant." % constant_features_idx, UserWarning)
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:112: RuntimeWarning: invalid value encountered in divide
-      f = msb / msw
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:111: UserWarning: Features [93] are constant.
-      warnings.warn("Features %s are constant." % constant_features_idx, UserWarning)
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:112: RuntimeWarning: invalid value encountered in divide
-      f = msb / msw
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:111: UserWarning: Features [93] are constant.
-      warnings.warn("Features %s are constant." % constant_features_idx, UserWarning)
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:112: RuntimeWarning: invalid value encountered in divide
-      f = msb / msw
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:111: UserWarning: Features [93] are constant.
-      warnings.warn("Features %s are constant." % constant_features_idx, UserWarning)
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:112: RuntimeWarning: invalid value encountered in divide
-      f = msb / msw
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:111: UserWarning: Features [93] are constant.
-      warnings.warn("Features %s are constant." % constant_features_idx, UserWarning)
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:112: RuntimeWarning: invalid value encountered in divide
-      f = msb / msw
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:111: UserWarning: Features [93] are constant.
-      warnings.warn("Features %s are constant." % constant_features_idx, UserWarning)
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:112: RuntimeWarning: invalid value encountered in divide
-      f = msb / msw
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:111: UserWarning: Features [93] are constant.
-      warnings.warn("Features %s are constant." % constant_features_idx, UserWarning)
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:112: RuntimeWarning: invalid value encountered in divide
-      f = msb / msw
-    
-
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:111: UserWarning: Features [93] are constant.
-      warnings.warn("Features %s are constant." % constant_features_idx, UserWarning)
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:112: RuntimeWarning: invalid value encountered in divide
-      f = msb / msw
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:111: UserWarning: Features [93] are constant.
-      warnings.warn("Features %s are constant." % constant_features_idx, UserWarning)
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:112: RuntimeWarning: invalid value encountered in divide
-      f = msb / msw
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:111: UserWarning: Features [93] are constant.
-      warnings.warn("Features %s are constant." % constant_features_idx, UserWarning)
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:112: RuntimeWarning: invalid value encountered in divide
-      f = msb / msw
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:111: UserWarning: Features [93] are constant.
-      warnings.warn("Features %s are constant." % constant_features_idx, UserWarning)
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:112: RuntimeWarning: invalid value encountered in divide
-      f = msb / msw
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:111: UserWarning: Features [93] are constant.
-      warnings.warn("Features %s are constant." % constant_features_idx, UserWarning)
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:112: RuntimeWarning: invalid value encountered in divide
-      f = msb / msw
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:111: UserWarning: Features [93] are constant.
-      warnings.warn("Features %s are constant." % constant_features_idx, UserWarning)
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:112: RuntimeWarning: invalid value encountered in divide
-      f = msb / msw
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:111: UserWarning: Features [93] are constant.
-      warnings.warn("Features %s are constant." % constant_features_idx, UserWarning)
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:112: RuntimeWarning: invalid value encountered in divide
-      f = msb / msw
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:111: UserWarning: Features [93] are constant.
-      warnings.warn("Features %s are constant." % constant_features_idx, UserWarning)
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:112: RuntimeWarning: invalid value encountered in divide
-      f = msb / msw
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:111: UserWarning: Features [93] are constant.
-      warnings.warn("Features %s are constant." % constant_features_idx, UserWarning)
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:112: RuntimeWarning: invalid value encountered in divide
-      f = msb / msw
-    
-
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:111: UserWarning: Features [93] are constant.
-      warnings.warn("Features %s are constant." % constant_features_idx, UserWarning)
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:112: RuntimeWarning: invalid value encountered in divide
-      f = msb / msw
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:111: UserWarning: Features [93] are constant.
-      warnings.warn("Features %s are constant." % constant_features_idx, UserWarning)
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:112: RuntimeWarning: invalid value encountered in divide
-      f = msb / msw
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:111: UserWarning: Features [93] are constant.
-      warnings.warn("Features %s are constant." % constant_features_idx, UserWarning)
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:112: RuntimeWarning: invalid value encountered in divide
-      f = msb / msw
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:111: UserWarning: Features [93] are constant.
-      warnings.warn("Features %s are constant." % constant_features_idx, UserWarning)
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:112: RuntimeWarning: invalid value encountered in divide
-      f = msb / msw
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:111: UserWarning: Features [93] are constant.
-      warnings.warn("Features %s are constant." % constant_features_idx, UserWarning)
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:112: RuntimeWarning: invalid value encountered in divide
-      f = msb / msw
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:111: UserWarning: Features [93] are constant.
-      warnings.warn("Features %s are constant." % constant_features_idx, UserWarning)
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:112: RuntimeWarning: invalid value encountered in divide
-      f = msb / msw
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:111: UserWarning: Features [93] are constant.
-      warnings.warn("Features %s are constant." % constant_features_idx, UserWarning)
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:112: RuntimeWarning: invalid value encountered in divide
-      f = msb / msw
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:111: UserWarning: Features [93] are constant.
-      warnings.warn("Features %s are constant." % constant_features_idx, UserWarning)
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:112: RuntimeWarning: invalid value encountered in divide
-      f = msb / msw
-    
-
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:111: UserWarning: Features [93] are constant.
-      warnings.warn("Features %s are constant." % constant_features_idx, UserWarning)
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:112: RuntimeWarning: invalid value encountered in divide
-      f = msb / msw
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:111: UserWarning: Features [93] are constant.
-      warnings.warn("Features %s are constant." % constant_features_idx, UserWarning)
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:112: RuntimeWarning: invalid value encountered in divide
-      f = msb / msw
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:111: UserWarning: Features [93] are constant.
-      warnings.warn("Features %s are constant." % constant_features_idx, UserWarning)
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:112: RuntimeWarning: invalid value encountered in divide
-      f = msb / msw
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:111: UserWarning: Features [93] are constant.
-      warnings.warn("Features %s are constant." % constant_features_idx, UserWarning)
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:112: RuntimeWarning: invalid value encountered in divide
-      f = msb / msw
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:111: UserWarning: Features [93] are constant.
-      warnings.warn("Features %s are constant." % constant_features_idx, UserWarning)
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:112: RuntimeWarning: invalid value encountered in divide
-      f = msb / msw
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:111: UserWarning: Features [93] are constant.
-      warnings.warn("Features %s are constant." % constant_features_idx, UserWarning)
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:112: RuntimeWarning: invalid value encountered in divide
-      f = msb / msw
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:111: UserWarning: Features [93] are constant.
-      warnings.warn("Features %s are constant." % constant_features_idx, UserWarning)
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:112: RuntimeWarning: invalid value encountered in divide
-      f = msb / msw
-    
-
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:111: UserWarning: Features [93] are constant.
-      warnings.warn("Features %s are constant." % constant_features_idx, UserWarning)
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:112: RuntimeWarning: invalid value encountered in divide
-      f = msb / msw
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:111: UserWarning: Features [93] are constant.
-      warnings.warn("Features %s are constant." % constant_features_idx, UserWarning)
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:112: RuntimeWarning: invalid value encountered in divide
-      f = msb / msw
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:111: UserWarning: Features [93] are constant.
-      warnings.warn("Features %s are constant." % constant_features_idx, UserWarning)
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:112: RuntimeWarning: invalid value encountered in divide
-      f = msb / msw
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:111: UserWarning: Features [93] are constant.
-      warnings.warn("Features %s are constant." % constant_features_idx, UserWarning)
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:112: RuntimeWarning: invalid value encountered in divide
-      f = msb / msw
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:111: UserWarning: Features [93] are constant.
-      warnings.warn("Features %s are constant." % constant_features_idx, UserWarning)
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:112: RuntimeWarning: invalid value encountered in divide
-      f = msb / msw
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:111: UserWarning: Features [93] are constant.
-      warnings.warn("Features %s are constant." % constant_features_idx, UserWarning)
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:112: RuntimeWarning: invalid value encountered in divide
-      f = msb / msw
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:111: UserWarning: Features [93] are constant.
-      warnings.warn("Features %s are constant." % constant_features_idx, UserWarning)
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:112: RuntimeWarning: invalid value encountered in divide
-      f = msb / msw
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:111: UserWarning: Features [93] are constant.
-      warnings.warn("Features %s are constant." % constant_features_idx, UserWarning)
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:112: RuntimeWarning: invalid value encountered in divide
-      f = msb / msw
-    
-
     Best k for feature selection: 7
     Best score: 0.9684704474991556
     
@@ -1690,42 +1509,6 @@ for k, mean_test_score in zip(param_grid['select_features__k'], grid_search.cv_r
     k = 9: 0.9682
     k = 10: 0.9682
     
-
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:111: UserWarning: Features [93] are constant.
-      warnings.warn("Features %s are constant." % constant_features_idx, UserWarning)
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:112: RuntimeWarning: invalid value encountered in divide
-      f = msb / msw
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:111: UserWarning: Features [93] are constant.
-      warnings.warn("Features %s are constant." % constant_features_idx, UserWarning)
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:112: RuntimeWarning: invalid value encountered in divide
-      f = msb / msw
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:111: UserWarning: Features [93] are constant.
-      warnings.warn("Features %s are constant." % constant_features_idx, UserWarning)
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:112: RuntimeWarning: invalid value encountered in divide
-      f = msb / msw
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:111: UserWarning: Features [93] are constant.
-      warnings.warn("Features %s are constant." % constant_features_idx, UserWarning)
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:112: RuntimeWarning: invalid value encountered in divide
-      f = msb / msw
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:111: UserWarning: Features [93] are constant.
-      warnings.warn("Features %s are constant." % constant_features_idx, UserWarning)
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:112: RuntimeWarning: invalid value encountered in divide
-      f = msb / msw
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:111: UserWarning: Features [93] are constant.
-      warnings.warn("Features %s are constant." % constant_features_idx, UserWarning)
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:112: RuntimeWarning: invalid value encountered in divide
-      f = msb / msw
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:111: UserWarning: Features [93] are constant.
-      warnings.warn("Features %s are constant." % constant_features_idx, UserWarning)
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:112: RuntimeWarning: invalid value encountered in divide
-      f = msb / msw
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:111: UserWarning: Features [93] are constant.
-      warnings.warn("Features %s are constant." % constant_features_idx, UserWarning)
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:112: RuntimeWarning: invalid value encountered in divide
-      f = msb / msw
-    
-
-
 ```python
 from sklearn.feature_selection import f_classif, SelectKBest
 from numpy import array 
@@ -1848,14 +1631,6 @@ print(X_filtered.head())
     3                    0.739555  
     4                    0.795016  
     
-
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:111: UserWarning: Features [93] are constant.
-      warnings.warn("Features %s are constant." % constant_features_idx, UserWarning)
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\sklearn\feature_selection\_univariate_selection.py:112: RuntimeWarning: invalid value encountered in divide
-      f = msb / msw
-    
-
-
 ```python
 from scipy.stats import f_oneway
 
@@ -3324,11 +3099,6 @@ print(bankruptcy_df.corr())
      Equity to Liability                                            1.000000  
     
     [96 rows x 96 columns]
-    
-
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\statsmodels\regression\linear_model.py:1782: RuntimeWarning: divide by zero encountered in scalar divide
-      return 1 - self.ssr/self.centered_tss
-    
 
 
 ```python
@@ -3475,184 +3245,7 @@ print("Filtered dataset:")
 print(X_filtered2.head())
 ```
 
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\statsmodels\regression\linear_model.py:1782: RuntimeWarning: divide by zero encountered in scalar divide
-      return 1 - self.ssr/self.centered_tss
-    
 
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\statsmodels\regression\linear_model.py:1782: RuntimeWarning: divide by zero encountered in scalar divide
-      return 1 - self.ssr/self.centered_tss
-    
-
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\statsmodels\regression\linear_model.py:1782: RuntimeWarning: divide by zero encountered in scalar divide
-      return 1 - self.ssr/self.centered_tss
-    
-
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\statsmodels\regression\linear_model.py:1782: RuntimeWarning: divide by zero encountered in scalar divide
-      return 1 - self.ssr/self.centered_tss
-    
-
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\statsmodels\regression\linear_model.py:1782: RuntimeWarning: divide by zero encountered in scalar divide
-      return 1 - self.ssr/self.centered_tss
-    
-
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\statsmodels\regression\linear_model.py:1782: RuntimeWarning: divide by zero encountered in scalar divide
-      return 1 - self.ssr/self.centered_tss
-    
-
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\statsmodels\regression\linear_model.py:1782: RuntimeWarning: divide by zero encountered in scalar divide
-      return 1 - self.ssr/self.centered_tss
-    
-
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\statsmodels\regression\linear_model.py:1782: RuntimeWarning: divide by zero encountered in scalar divide
-      return 1 - self.ssr/self.centered_tss
-    
-
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\statsmodels\regression\linear_model.py:1782: RuntimeWarning: divide by zero encountered in scalar divide
-      return 1 - self.ssr/self.centered_tss
-    
-
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\statsmodels\regression\linear_model.py:1782: RuntimeWarning: divide by zero encountered in scalar divide
-      return 1 - self.ssr/self.centered_tss
-    
-
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\statsmodels\regression\linear_model.py:1782: RuntimeWarning: divide by zero encountered in scalar divide
-      return 1 - self.ssr/self.centered_tss
-    
-
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\statsmodels\regression\linear_model.py:1782: RuntimeWarning: divide by zero encountered in scalar divide
-      return 1 - self.ssr/self.centered_tss
-    
-
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\statsmodels\regression\linear_model.py:1782: RuntimeWarning: divide by zero encountered in scalar divide
-      return 1 - self.ssr/self.centered_tss
-    
-
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\statsmodels\regression\linear_model.py:1782: RuntimeWarning: divide by zero encountered in scalar divide
-      return 1 - self.ssr/self.centered_tss
-    
-
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\statsmodels\regression\linear_model.py:1782: RuntimeWarning: divide by zero encountered in scalar divide
-      return 1 - self.ssr/self.centered_tss
-    
-
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\statsmodels\regression\linear_model.py:1782: RuntimeWarning: divide by zero encountered in scalar divide
-      return 1 - self.ssr/self.centered_tss
-    
-
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\statsmodels\regression\linear_model.py:1782: RuntimeWarning: divide by zero encountered in scalar divide
-      return 1 - self.ssr/self.centered_tss
-    
-
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\statsmodels\regression\linear_model.py:1782: RuntimeWarning: divide by zero encountered in scalar divide
-      return 1 - self.ssr/self.centered_tss
-    
-
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\statsmodels\regression\linear_model.py:1782: RuntimeWarning: divide by zero encountered in scalar divide
-      return 1 - self.ssr/self.centered_tss
-    
-
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\statsmodels\regression\linear_model.py:1782: RuntimeWarning: divide by zero encountered in scalar divide
-      return 1 - self.ssr/self.centered_tss
-    
-
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\statsmodels\regression\linear_model.py:1782: RuntimeWarning: divide by zero encountered in scalar divide
-      return 1 - self.ssr/self.centered_tss
-    
-
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\statsmodels\regression\linear_model.py:1782: RuntimeWarning: divide by zero encountered in scalar divide
-      return 1 - self.ssr/self.centered_tss
-    
-
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\statsmodels\regression\linear_model.py:1782: RuntimeWarning: divide by zero encountered in scalar divide
-      return 1 - self.ssr/self.centered_tss
-    
-
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\statsmodels\regression\linear_model.py:1782: RuntimeWarning: divide by zero encountered in scalar divide
-      return 1 - self.ssr/self.centered_tss
-    
-
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\statsmodels\regression\linear_model.py:1782: RuntimeWarning: divide by zero encountered in scalar divide
-      return 1 - self.ssr/self.centered_tss
-    
-
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\statsmodels\regression\linear_model.py:1782: RuntimeWarning: divide by zero encountered in scalar divide
-      return 1 - self.ssr/self.centered_tss
-    
-
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\statsmodels\regression\linear_model.py:1782: RuntimeWarning: divide by zero encountered in scalar divide
-      return 1 - self.ssr/self.centered_tss
-    
-
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\statsmodels\regression\linear_model.py:1782: RuntimeWarning: divide by zero encountered in scalar divide
-      return 1 - self.ssr/self.centered_tss
-    
-
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\statsmodels\regression\linear_model.py:1782: RuntimeWarning: divide by zero encountered in scalar divide
-      return 1 - self.ssr/self.centered_tss
-    
-
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\statsmodels\regression\linear_model.py:1782: RuntimeWarning: divide by zero encountered in scalar divide
-      return 1 - self.ssr/self.centered_tss
-    
-
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\statsmodels\regression\linear_model.py:1782: RuntimeWarning: divide by zero encountered in scalar divide
-      return 1 - self.ssr/self.centered_tss
-    
-
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\statsmodels\regression\linear_model.py:1782: RuntimeWarning: divide by zero encountered in scalar divide
-      return 1 - self.ssr/self.centered_tss
-    
-
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\statsmodels\regression\linear_model.py:1782: RuntimeWarning: divide by zero encountered in scalar divide
-      return 1 - self.ssr/self.centered_tss
-    
-
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\statsmodels\regression\linear_model.py:1782: RuntimeWarning: divide by zero encountered in scalar divide
-      return 1 - self.ssr/self.centered_tss
-    
-
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\statsmodels\regression\linear_model.py:1782: RuntimeWarning: divide by zero encountered in scalar divide
-      return 1 - self.ssr/self.centered_tss
-    
-
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\statsmodels\regression\linear_model.py:1782: RuntimeWarning: divide by zero encountered in scalar divide
-      return 1 - self.ssr/self.centered_tss
-    
-
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\statsmodels\regression\linear_model.py:1782: RuntimeWarning: divide by zero encountered in scalar divide
-      return 1 - self.ssr/self.centered_tss
-    
-
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\statsmodels\regression\linear_model.py:1782: RuntimeWarning: divide by zero encountered in scalar divide
-      return 1 - self.ssr/self.centered_tss
-    
-
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\statsmodels\regression\linear_model.py:1782: RuntimeWarning: divide by zero encountered in scalar divide
-      return 1 - self.ssr/self.centered_tss
-    
-
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\statsmodels\regression\linear_model.py:1782: RuntimeWarning: divide by zero encountered in scalar divide
-      return 1 - self.ssr/self.centered_tss
-    
-
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\statsmodels\regression\linear_model.py:1782: RuntimeWarning: divide by zero encountered in scalar divide
-      return 1 - self.ssr/self.centered_tss
-    
-
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\statsmodels\regression\linear_model.py:1782: RuntimeWarning: divide by zero encountered in scalar divide
-      return 1 - self.ssr/self.centered_tss
-    
-
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\statsmodels\regression\linear_model.py:1782: RuntimeWarning: divide by zero encountered in scalar divide
-      return 1 - self.ssr/self.centered_tss
-    
-
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\statsmodels\regression\linear_model.py:1782: RuntimeWarning: divide by zero encountered in scalar divide
-      return 1 - self.ssr/self.centered_tss
-    
-
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\statsmodels\regression\linear_model.py:1782: RuntimeWarning: divide by zero encountered in scalar divide
-      return 1 - self.ssr/self.centered_tss
     
 
     Dropped variables:
@@ -3815,24 +3408,12 @@ print(X_filtered2.columns)
 
 print("\nRemoved variables:")
 print(removed_variables)
-```
-
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\statsmodels\regression\linear_model.py:1782: RuntimeWarning: divide by zero encountered in scalar divide
-      return 1 - self.ssr/self.centered_tss
-    
+``` 
 
     Dropping  Current Liability to Equity with VIF value: 69.24
     
 
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\statsmodels\regression\linear_model.py:1782: RuntimeWarning: divide by zero encountered in scalar divide
-      return 1 - self.ssr/self.centered_tss
-    
-
     Dropping  Current Assets/Total Assets with VIF value: 56.42
-    
-
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\statsmodels\regression\linear_model.py:1782: RuntimeWarning: divide by zero encountered in scalar divide
-      return 1 - self.ssr/self.centered_tss
     
 
     Dropping  Working Capital/Equity with VIF value: 11.64
@@ -3883,11 +3464,6 @@ print(removed_variables)
     Removed variables:
     [' Current Liability to Equity', ' Current Assets/Total Assets', ' Working Capital/Equity']
     
-
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\statsmodels\regression\linear_model.py:1782: RuntimeWarning: divide by zero encountered in scalar divide
-      return 1 - self.ssr/self.centered_tss
-    
-
 
 VIF showed that there were still some multicolinearity (high VIFds) even after the first run, so i put a code that tested adroping all of them and left us with the best combination where the majority of VIFs decreased, this was made to be the dataset used in the V3 models
 
@@ -3948,10 +3524,6 @@ print("Outliers:", outliers)
     6817    False
     6818    False
     Length: 6819, dtype: bool
-    
-
-    C:\Users\azizm\AppData\Local\Programs\Python\Python313\Lib\site-packages\statsmodels\stats\outliers_influence.py:847: RuntimeWarning: invalid value encountered in sqrt
-      return self.resid / sigma / np.sqrt(1 - hii)
     
 
 There were no outliers detected through the methods used in this algorithm mosytt likely due to the preprocessing of the data before it was provided
@@ -5590,5 +5162,5 @@ FileLink('tree.png')
 <a href='tree.png' target='_blank'>tree.png</a><br>
 
 
-The model I recommend using is random forest filtered 3 as it has less features, less multicolinearity and a high accuracy which will cause less overfitting and better results for outside data (instead of using the random forest original which had high accuracy but has a lot of features, also instead of logistic regression V3 which had higher accuracy since random forests purpose is to oresent overfitting)
+The model I recommend using is random forest filtered 3 as it has less features, less multicolinearity and a high accuracy which will cause less overfitting and better results for outside data (instead of using the random forest original which had high accuracy but has a lot of features, also instead of logistic regression V3 which had higher accuracy since random forests purpose is to present overfitting)
 
