@@ -1,7 +1,8 @@
 ## BDA-398B Final Project - Bankruptcy Classification
-This is my undergraduate project for my AI for Business course at the Lebanese American University. It looked at a kaggle dataset on bancruptcy in Taiwan.
+This is my undergraduate project for my AI for Business course at the Lebanese American University. It is also my first ever coding project (and first time coding!). That is why there is a lot of unnecessary codes and comments (especially when it comes to the ineffecient use of functions). Still was really happy with the result for it being my first time. It looked at a kaggle dataset on bancruptcy in Taiwan.
 
 ```python
+# Load the required packages
 import pandas as pd
 import numpy as np
 
@@ -36,7 +37,7 @@ The case chosen is about predicting the bankruptcy of companies based on their f
 # Load data from CSV file
 bankruptcy_df = pd.read_csv(r'C:\Users\azizm\Documents\BDA-398B-Final-Project\bankruptcy.csv', sep=',', header=0, encoding='utf-8', engine='python', on_bad_lines='warn')
 
-
+# Preview the first 20 rows 
 bankruptcy_df.head(20)
 ```
 
@@ -583,6 +584,7 @@ print(f"Number of rows: {len(bankruptcy_df)}")
 
 
 ```python
+# Extract all feature column names, excluding the target label
 FEATURES = bankruptcy_df.columns.tolist()
 FEATURES.remove('Bankrupt?')
 XFeatures = FEATURES
@@ -693,6 +695,7 @@ for feature in XFeatures:
 
 
 ```python
+# Display the number of rows and columns in the dataset
 bankruptcy_df.shape
 ```
 
@@ -1039,6 +1042,7 @@ print(bankruptcy_df.info())
 
 
 ```python
+# Identify how many rows contain any missing values
 bankruptcy_df[bankruptcy_df.isnull().any(axis=1)].count()
 ```
 
@@ -1062,6 +1066,7 @@ bankruptcy_df[bankruptcy_df.isnull().any(axis=1)].count()
 
 
 ```python
+# Check data shape (rows × columns) after cleaning
 bankruptcy_df.shape
 ```
 
@@ -1074,11 +1079,13 @@ bankruptcy_df.shape
 
 
 ```python
+# Remove label and potentially redundant flag column from feature list
 names_of_x_cols = bankruptcy_df.columns.drop(['Bankrupt?', ' Net Income Flag'])
 ```
 
 
 ```python
+# Reprint summary stats
 bankruptcy_df.describe()
 ```
 
@@ -1328,6 +1335,7 @@ bankruptcy_df.describe()
 
 
 ```python
+# Compute and visualize correlation matrix to explore multicollinearity
 import seaborn as sns
 
 X_features_df = bankruptcy_df[XFeatures]
@@ -1347,6 +1355,7 @@ hints at multicolinearity
 
 
 ```python
+# Prepare an empty dictionary to store evaluation metrics for different models
 result_dict = {}
 ```
 
@@ -1356,73 +1365,73 @@ result_dict = {}
 
 
 ```python
-def summarize_classification(y_test, y_pred):
-    
-    acc = accuracy_score(y_test, y_pred, normalize=True)
-    num_acc = accuracy_score(y_test, y_pred, normalize=False)
+# Function to compute and return accuracy metrics from classification results
+def summarize_classification(y_test, y_pred):    
+    acc = accuracy_score(y_test, y_pred, normalize=True)   # Proportion correct
+    num_acc = accuracy_score(y_test, y_pred, normalize=False)  # Number correct (not used here)
     
     return {'accuracy': acc}
 ```
 
 
 ```python
+# Train a Random Forest model using training data
 def random_forest_fn(x_train, y_train, max_depth=None, max_features=None): 
-    
-    model = RandomForestClassifier(n_estimators = 100) 
+    model = RandomForestClassifier(n_estimators=100)  # 100 trees by default
     model.fit(x_train, y_train)
-    
     return model
 ```
 
 
 ```python
-def build_model(classifier_fn,                
-                name_of_y_col, 
-                names_of_x_cols, 
-                dataset, 
-                test_frac=0.2):
+# Generic modeling function to train, test, and evaluate a classifier
+def build_model(classifier_fn, name_of_y_col, names_of_x_cols, dataset, test_frac=0.2):
     
+    # Split dataset into predictors and label
     X = dataset[names_of_x_cols]
     Y = dataset[name_of_y_col]
 
+    # Split into train/test subsets
     x_train, x_test, y_train, y_test = train_test_split(X, Y, test_size=test_frac)
-       
-    model = classifier_fn(x_train, y_train)
     
+    # Fit model and generate predictions
+    model = classifier_fn(x_train, y_train)
     y_pred = model.predict(x_test)
 
+    # Evaluate performance and create a confusion matrix
     test_summary = summarize_classification(y_test, y_pred)
-    
-    pred_results = pd.DataFrame({'y_test': y_test,
-                                 'y_pred': y_pred})
-    
+    pred_results = pd.DataFrame({'y_test': y_test, 'y_pred': y_pred})
     model_crosstab = pd.crosstab(pred_results.y_pred, pred_results.y_test)
-    
-    return {'test': test_summary,
-            'confusion_matrix': model_crosstab}
+
+    return {
+        'test': test_summary,
+        'confusion_matrix': model_crosstab
+    }
 ```
 
 
 ```python
+# Utility to display evaluation results for all saved models
 def compare_results():
     for key in result_dict:
         print('Classification: ', key)
-
-        print()
-        print('Test data')
+        print('\nTest data')
         for score in result_dict[key]['test']:
             print(score, result_dict[key]['test'][score])
-       
         print()
 ```
 
 
 ```python
-result_dict['Bankrupt? ~ random_forest'] = build_model(random_forest_fn,
-                                                 'Bankrupt?',
-                                                  XFeatures,
-                                                  bankruptcy_df)
+# Build and evaluate Random Forest model, then store results
+result_dict['Bankrupt? ~ random_forest'] = build_model(
+    random_forest_fn,
+    'Bankrupt?',
+    XFeatures,
+    bankruptcy_df
+)
 
+# Print model performance
 compare_results()
 ```
 
@@ -1442,6 +1451,7 @@ V1 High accuracy shows that data has most likely been preprocessed and features 
 
 
 ```python
+# Separate predictors and target variable
 X = bankruptcy_df.drop('Bankrupt?', axis=1) # Features
 y = bankruptcy_df['Bankrupt?'] # Target variable
 ```
@@ -1514,14 +1524,17 @@ for k, mean_test_score in zip(param_grid['select_features__k'], grid_search.cv_r
 from sklearn.feature_selection import f_classif, SelectKBest
 from numpy import array 
 
+# Select top 7 features based on ANOVA F-statistics
 select_features = SelectKBest(f_classif, k=7)
 
-X = bankruptcy_df.drop('Bankrupt?', axis=1)  # Features
-y = bankruptcy_df['Bankrupt?']  # Target variable
+# Prepare X and y again for fitting
+X = bankruptcy_df.drop('Bankrupt?', axis=1)
+y = bankruptcy_df['Bankrupt?']
 
+# Apply selection to data
 X_filtered = select_features.fit_transform(X, y)
-filter_mask = select_features.get_support()
-selected_features = array(list(X.columns))
+filter_mask = select_features.get_support()  # Boolean mask for selected features
+selected_features = array(list(X.columns))   # All original feature names
 
 # Create a DataFrame with only the selected features
 X_filtered = pd.DataFrame(X_filtered, columns=selected_features[filter_mask])
@@ -1674,6 +1687,7 @@ Hypothesis testing on the best features selected, all features are significant w
 ```python
 from sklearn.linear_model import LogisticRegression
 
+# Define a function that fits a logistic regression model
 def logistic_fn(x_train, y_train):
     model = LogisticRegression(solver='liblinear')
     model.fit(x_train, y_train)
@@ -1687,15 +1701,18 @@ model = logistic_fn(X_filtered_train, y)
 
 
 ```python
+# Create a new DataFrame by selecting only the chosen top features from the original dataset
 X_filtered_df = bankruptcy_df[selected_features]
 ```
 
 
 ```python
+# Build and evaluate logistic regression using pre-filtered features
 result_dict['bankruptcy ~ logistic_filtered'] = build_model(logistic_fn,
                                                             'Bankrupt?',
                                                             X_filtered_df.columns,
                                                             bankruptcy_df)
+# Display performance summary for logistic model
 compare_results()
 ```
 
@@ -1718,7 +1735,7 @@ result_dict['Bankrupt? ~ random_forest_filtered'] = build_model(random_forest_fn
                                                                 'Bankrupt?',
                                                                 X_filtered.columns,
                                                                 bankruptcy_df)
-
+# Print performance of the filtered Random Forest model
 compare_results()
 ```
 
@@ -1741,6 +1758,8 @@ compare_results()
 
 
 ```python
+# Define a function to train a Decision Tree classifier
+# Allows tuning max_depth and max_features as optional hyperparameters
 def decision_tree_fn(x_train, y_train, max_depth=None, max_features=None): 
     
     model = DecisionTreeClassifier(max_depth=max_depth, max_features=max_features)
@@ -1751,11 +1770,15 @@ def decision_tree_fn(x_train, y_train, max_depth=None, max_features=None):
 
 
 ```python
-result_dict['bankruptcy ~ decision_tree_filtered'] = build_model(decision_tree_fn,
-                                                 'Bankrupt?',
-                                                  X_filtered.columns,
-                                                  bankruptcy_df)
+# Build and evaluate decision tree using SelectKBest filtered features (X_filtered)
+result_dict['bankruptcy ~ decision_tree_filtered'] = build_model(
+    decision_tree_fn,
+    'Bankrupt?',
+    X_filtered.columns,
+    bankruptcy_df
+)
 
+# Output performance metrics
 compare_results()
 ```
 
@@ -1783,11 +1806,11 @@ compare_results()
 
 
 ```python
+# This function defines a K-Nearest Neighbors model with k=5
+# It fits the model to training data and returns the fitted model
 def knn_fn(x_train, y_train, max_depth=None, max_features=None): 
-    
     model = KNeighborsClassifier(n_neighbors = 5)
     model.fit(x_train, y_train)
-    
     return model
 ```
 
@@ -2047,6 +2070,7 @@ X_filtered1_df = pd.DataFrame(X_filtered1, columns=selected_features1)
 ```python
 from sklearn.linear_model import LogisticRegression
 
+# Define logistic regression function
 def logistic_fn(x_train, y_train):
     model = LogisticRegression(solver='liblinear')
     model.fit(x_train, y_train)
@@ -2059,10 +2083,12 @@ model = logistic_fn(X_filtered1, y)
 
 
 ```python
+# Evaluate logistic regression performance
 result_dict['bankruptcy ~ logistic_filtered1'] = build_model(logistic_fn,
                                                             'Bankrupt?',
                                                             X_filtered1_df.columns,
                                                             bankruptcy_df)
+# Compare the results
 compare_results()
 ```
 
@@ -2106,6 +2132,7 @@ result_dict['Bankrupt? ~ random_forest_filtered1'] = build_model(random_forest_f
                                                                 selected_features1,
                                                                 bankruptcy_df)
 
+# Compare the results
 compare_results()
 ```
 
@@ -2148,6 +2175,7 @@ compare_results()
 
 
 ```python
+# Decision tree evaluation on same filtered feature set
 result_dict['bankruptcy ~ decision_tree_filtered1'] = build_model(decision_tree_fn,
                                                                    'Bankrupt?',
                                                                    selected_features1,
@@ -2272,6 +2300,7 @@ mean = np.mean(bankruptcy_df, axis=0)
 cov = np.cov(bankruptcy_df.T)
 cov_pinv = np.linalg.pinv(cov)
 
+# Calculate Mahalanobis distance for each observation to detect multivariate outliers
 def mahalanobis_distance(x, mean, cov_pinv):
     diff = x - mean
     dist = np.sqrt(diff.T @ cov_pinv @ diff)
@@ -2295,6 +2324,7 @@ mean = np.mean(bankruptcy_df, axis=0)
 cov = np.cov(bankruptcy_df.T)
 cov_pinv = np.linalg.pinv(cov)
 
+# Calculate Mahalanobis distance for each observation to detect multivariate outliers
 def mahalanobis_distance(x, mean, cov_pinv):
     diff = x - mean
     dist = np.sqrt(diff.T @ cov_pinv @ diff)
@@ -3151,14 +3181,22 @@ print(vif_df[vif_df['VIF'] > 10])
 
 
 ```python
-# Display highly correlated variables (correlation coefficient > 0.8)
+# Get absolute correlation values between all features
 corr_matrix = bankruptcy_df.corr().abs()
-high_corr_vars = np.where(corr_matrix > 0.8)
-high_corr_vars = [(corr_matrix.index[x], corr_matrix.columns[y]) for x, y in zip(*high_corr_vars) if x != y and x < y]
 
+# Find pairs of features with correlation > 0.8 (excluding duplicates and self-pairs)
+high_corr_vars = np.where(corr_matrix > 0.8)
+high_corr_vars = [
+    (corr_matrix.index[x], corr_matrix.columns[y])
+    for x, y in zip(*high_corr_vars)
+    if x != y and x < y
+]
+
+# Print the highly correlated feature pairs and their correlation values
 print("Highly correlated variables:")
 for var1, var2 in high_corr_vars:
     print(f"{var1} and {var2} (correlation coefficient: {corr_matrix.loc[var1, var2]:.2f})")
+
 ```
 
     Highly correlated variables:
@@ -3211,10 +3249,11 @@ for var1, var2 in high_corr_vars:
 ```python
 from statsmodels.stats.outliers_influence import variance_inflation_factor
 
+# Function to calculate the highest VIF after dropping a specific column
 def calculate_vif_after_drop(X, column):
-    X_temp = X.drop(column, axis=1)
-    vif = [variance_inflation_factor(X_temp.values, i) for i in range(X_temp.shape[1])]
-    return max(vif)
+    X_temp = X.drop(column, axis=1)  # Drop the column to test its impact
+    vif = [variance_inflation_factor(X_temp.values, i) for i in range(X_temp.shape[1])]  # Compute VIFs
+    return max(vif)  # Return the maximum VIF remaining
 
 # Initialize an empty list to store the columns to drop
 to_drop = []
@@ -3381,34 +3420,39 @@ print(vif_df_filtered[vif_df_filtered['VIF'] > 10])
 ```python
 from statsmodels.stats.outliers_influence import variance_inflation_factor
 
+# Function to calculate VIF for all features in a DataFrame
 def calculate_vif(X):
     vif = pd.DataFrame()
     vif["feature"] = X.columns
     vif["VIF"] = [variance_inflation_factor(X.values, i) for i in range(X.shape[1])]
     return vif
 
-threshold = 10
-removed_variables = []
+threshold = 10  # VIF threshold above which multicollinearity is considered high
+removed_variables = []  # Track dropped features
+
 while True:
     X = X_filtered2.copy()
-    X = sm.add_constant(X)
-    vif_df = calculate_vif(X)
+    X = sm.add_constant(X)  # Add constant term for VIF calculation
+    vif_df = calculate_vif(X)  # Compute VIFs
+
     max_vif = vif_df['VIF'].max()
     
     if max_vif > threshold:
-        # Drop the variable with the highest VIF value
+        # Drop the feature with the highest VIF
         variable_to_drop = vif_df.loc[vif_df['VIF'].idxmax(), 'feature']
         print(f"Dropping {variable_to_drop} with VIF value: {max_vif:.2f}")
         X_filtered2 = X_filtered2.drop(columns=[variable_to_drop])
         removed_variables.append(variable_to_drop)
     else:
-        break
+        break  # Exit loop when all VIFs are below the threshold
 
+# Print the remaining and removed features
 print("Final list of variables:")
 print(X_filtered2.columns)
 
 print("\nRemoved variables:")
 print(removed_variables)
+
 ``` 
 
     Dropping  Current Liability to Equity with VIF value: 69.24
@@ -3532,6 +3576,7 @@ There were no outliers detected through the methods used in this algorithm mosyt
 
 
 ```python
+# View dataframe
 X_filtered2
 ```
 
@@ -3853,6 +3898,7 @@ X_filtered2
 
 
 ```python
+# Check for missing values in each column of X_filtered2
 X_filtered2.isna().sum()
 ```
 
@@ -3892,7 +3938,7 @@ X_filtered2 = selector.transform(X_filtered2)
 
 
 ```python
-
+#Make it a dataframe
 X_filtered2 = pd.DataFrame(X_filtered2)
 X_filtered2
 ```
@@ -4269,28 +4315,34 @@ for k, mean_test_score in zip(param_grid['select_features__k'], grid_search.cv_r
 from sklearn.feature_selection import f_classif, SelectKBest
 from numpy import array 
 
+# Select top 10 features based on ANOVA F-value between each feature and the target
 select_features = SelectKBest(f_classif, k=10)
 
-X = X_filtered2  # Features
+X = X_filtered2  # Input features
 y = bankruptcy_df['Bankrupt?']  # Target variable
 
+# Fit the selector and transform X to keep only the top features
 X_filtered3 = select_features.fit_transform(X, y)
+
+# Get boolean mask of selected features and map back to their names
 filter_mask = select_features.get_support()
 selected_features = array(list(X.columns))
 
-# Create a DataFrame with only the selected features
+# Create a new DataFrame with only the selected features
 X_filtered3 = pd.DataFrame(X_filtered3, columns=selected_features[filter_mask])
 
-
-
+# Print all original feature names
 print("All features:")
 print(selected_features)
 
+# Print only the selected top 10 features
 print("\nSelected best 7:")
 print(selected_features[filter_mask])
 
+# Show the first few rows of the final filtered DataFrame
 print("\nX_filtered3:")
 print(X_filtered3.head())
+
 ```
 
     All features:
@@ -4346,6 +4398,7 @@ print(Filtered3_df.head())
 
 
 ```python
+# Returns the classification accuracy as a dictionary
 def summarize_classification(y_test, y_pred):
     
     acc = accuracy_score(y_test, y_pred, normalize=True)
@@ -4356,75 +4409,93 @@ def summarize_classification(y_test, y_pred):
 
 
 ```python
+# Generic function to train and evaluate a classification model
 def build_model(classifier_fn,                
                 name_of_y_col, 
                 names_of_x_cols, 
                 dataset, 
                 test_frac=0.2):
-    
-    X = dataset.loc[:, names_of_x_cols]  # Modified this line
+
+    # Extract predictor variables and target variable from dataset
+    X = dataset.loc[:, names_of_x_cols]
     Y = dataset[name_of_y_col]
 
+    # Split the data into training and test sets
     x_train, x_test, y_train, y_test = train_test_split(X, Y, test_size=test_frac)
 
+    # Train the model using the given classifier function
     model = classifier_fn(x_train, y_train)
 
+    # Predict outcomes on both train and test sets
     y_pred = model.predict(x_test)
     y_pred_train = model.predict(x_train)
 
+    # Summarize accuracy on train and test sets
     train_summary = summary(model, x_train, y_train, y_pred_train)
     test_summary = summary(model, x_test, y_test, y_pred)
 
+    # Create a DataFrame for predictions and actuals
     pred_results = pd.DataFrame({'y_test': y_test,
                                  'y_pred': y_pred})
 
+    # Generate confusion matrix
     model_crosstab = pd.crosstab(pred_results.y_pred, pred_results.y_test)
 
+    # Return evaluation metrics and confusion matrix
     return {'training': train_summary, 
             'test': test_summary,
             'confusion_matrix': model_crosstab}
+
 ```
 
 
 ```python
 from sklearn.metrics import confusion_matrix, classification_report, accuracy_score
 
+# Calculate and return model accuracy as a dictionary
 def summary(model, x, y, y_pred):
-    accuracy = accuracy_score(y, y_pred)
-
+    accuracy = accuracy_score(y, y_pred)  # Compute classification accuracy
     return {'Accuracy': accuracy}
 ```
 
 
 ```python
+# Loop through result_dict and display test results for each model
 def compare_results():
     for key in result_dict:
-        print('Classification: ', key)
+        print('Classification: ', key)  # Print model identifier
 
         print()
-        print('Test data')
+        print('Test data')  # Print section header
+
+        # Print each test score (e.g., accuracy) for the model
         for score in result_dict[key]['test']:
             print(score, result_dict[key]['test'][score])
-       
-        print()
+        
+        print()  # Blank line for readability between models
+
 ```
 
 
 ```python
+# Train and return a logistic regression model
 def logistic_fn(x_train, y_train):
-    
-    model = LogisticRegression(solver='liblinear')
-    model.fit(x_train, y_train)
-    
-    return model
+    model = LogisticRegression(solver='liblinear')  # Initialize logistic regression with a simple solver
+    model.fit(x_train, y_train)  # Fit model to training data
+    return model  # Return trained model
 ```
 
 
 ```python
-result_dict['bankruptcy ~ logistic_filtered3'] = build_model(logistic_fn,
-                                                   'Bankrupt?',
-                                                   selected_features[filter_mask],
-                                                   Filtered3_df)
+# Train logistic regression on selected features from Filtered3_df and store results
+result_dict['bankruptcy ~ logistic_filtered3'] = build_model(
+    logistic_fn,                  # Logistic regression function
+    'Bankrupt?',                  # Target variable
+    selected_features[filter_mask],  # Selected feature names
+    Filtered3_df                  # Filtered dataset
+)
+
+# Display the test accuracy for all models in result_dict
 compare_results()
 ```
 
@@ -4482,22 +4553,26 @@ compare_results()
 
 
 ```python
+# Train and return a decision tree classifier
 def decision_tree_fn(x_train, y_train, max_depth=None, max_features=None): 
-    
-    model = DecisionTreeClassifier(max_depth=max_depth, max_features=max_features)
-    model.fit(x_train, y_train)
-    
-    return model
+    model = DecisionTreeClassifier(max_depth=max_depth, max_features=max_features)  # Initialize model with optional depth and feature limits
+    model.fit(x_train, y_train)  # Fit model to training data
+    return model  # Return trained model
 ```
 
 
 ```python
-result_dict['bankruptcy ~ decision_tree_filtered2'] = build_model(decision_tree_fn,
-                                                 'Bankrupt?',
-                                                   selected_features[filter_mask],
-                                                   Filtered3_df)
+# Train a decision tree model using the selected features and save the results
+result_dict['bankruptcy ~ decision_tree_filtered2'] = build_model(
+    decision_tree_fn,                 # Decision tree classifier function
+    'Bankrupt?',                      # Target variable
+    selected_features[filter_mask],  # Selected predictors
+    Filtered3_df                      # Filtered dataset with features and target
+)
 
+# Display test performance for all trained models
 compare_results()
+
 ```
 
     Classification:  Bankrupt? ~ random_forest
@@ -4559,21 +4634,24 @@ compare_results()
 
 
 ```python
+# Train and return a random forest classifier
 def random_forest_fn(x_train, y_train, max_depth=None, max_features=None): 
-    
-    model = RandomForestClassifier(n_estimators = 100) 
-    model.fit(x_train, y_train)
-    
-    return model
+    model = RandomForestClassifier(n_estimators=100)  # Initialize random forest with 100 trees
+    model.fit(x_train, y_train)  # Fit model to training data
+    return model  # Return trained model
 ```
 
 
 ```python
-result_dict['bankruptcy ~ random_forestfiltered3'] = build_model(random_forest_fn,
-                                                  'Bankrupt?',
-                                                   selected_features[filter_mask],
-                                                   Filtered3_df)
+# Train a random forest model on the selected features and store the results
+result_dict['bankruptcy ~ random_forestfiltered3'] = build_model(
+    random_forest_fn,                # Random forest classifier function
+    'Bankrupt?',                     # Target variable
+    selected_features[filter_mask], # Selected features
+    Filtered3_df                     # Dataset containing features and target
+)
 
+# Display model evaluation results
 compare_results()
 ```
 
@@ -4641,21 +4719,27 @@ compare_results()
 
 
 ```python
+# Train and return a K-Nearest Neighbors classifier
 def knn_fn(x_train, y_train, max_depth=None, max_features=None): 
-    
-    model = KNeighborsClassifier(n_neighbors = 10)
-    model.fit(x_train, y_train)
-    
-    return model
+    model = KNeighborsClassifier(n_neighbors=10)  # Initialize KNN with 10 neighbors
+    model.fit(x_train, y_train)  # Fit the model to training data
+    return model  # Return trained model
+
 ```
 
 
 ```python
-result_dict['bankruptcy ~ knnfiltered2'] = build_model(knn_fn,
-                                                 'Bankrupt?',
-                                                   selected_features[filter_mask],
-                                                   Filtered3_df)
+# Train a KNN model using the selected features and save the results
+result_dict['bankruptcy ~ knnfiltered2'] = build_model(
+    knn_fn,                          # KNN classifier function
+    'Bankrupt?',                     # Target variable
+    selected_features[filter_mask], # Selected feature names
+    Filtered3_df                     # Dataset with features and target
+)
+
+# Display model evaluation metrics
 compare_results()
+
 ```
 
     Classification:  Bankrupt? ~ random_forest
@@ -4729,23 +4813,30 @@ compare_results()
 
 
 ```python
-X = bankruptcy_df[XFeatures]
-Y = bankruptcy_df['Bankrupt?']
+# Separate predictors and target variable from the full dataset
+X = bankruptcy_df[XFeatures]         # Selected feature columns
+Y = bankruptcy_df['Bankrupt?']      # Target variable
 ```
 
 
 ```python
+# Split the data into training and testing sets (80/20 split)
 x_train, x_test, y_train, y_test = train_test_split(X, Y, test_size=0.2)
-    
+
+# Define range of K values to test (only testing K=360 here)
 k_range = list(range(360, 361))
 scores = []
+
+# Train and evaluate KNN for each value of K
 for i in k_range:
-    knn = KNeighborsClassifier(n_neighbors=i)
-    knn.fit(x_train, y_train)
-    y_pred = knn.predict(x_test)
-    print(summarize_classification(y_test, y_pred))
-#plt.plot(k_range, scores)
-#plt.show()
+    knn = KNeighborsClassifier(n_neighbors=i)  # Initialize KNN with i neighbors
+    knn.fit(x_train, y_train)                  # Fit model to training data
+    y_pred = knn.predict(x_test)               # Predict on test set
+    print(summarize_classification(y_test, y_pred))  # Print accuracy summary
+
+# Optional: visualize results (commented out)
+# plt.plot(k_range, scores)
+# plt.show()
 ```
 
     {'accuracy': 0.9626099706744868}
@@ -4757,15 +4848,24 @@ for i in k_range:
 ```python
 from sklearn.model_selection import ParameterGrid
 
+# Split the dataset into training and test sets
 x_train, x_test, y_train, y_test = train_test_split(X, Y, test_size=0.2)
+
+# Initialize a KNN model (hyperparameters will be set later)
 knn = KNeighborsClassifier()
 ```
 
 
 ```python
-KNN_parameters = {'n_neighbors': [2,3,4,5,6,7,8,9,10] }
+# Define a dictionary of K values to try for KNN
+KNN_parameters = {'n_neighbors': [2, 3, 4, 5, 6, 7, 8, 9, 10]}
+
+# Create a parameter grid from the dictionary
 KNN_parameter_grid = ParameterGrid(KNN_parameters)
+
+# Convert the grid to a list of parameter combinations (in this case, just K values)
 list(KNN_parameter_grid)
+
 ```
 
 
@@ -4785,11 +4885,13 @@ list(KNN_parameter_grid)
 
 
 ```python
+# Iterate over each KNN configuration in the parameter grid
 for g in KNN_parameter_grid:
-    knn.set_params(**g)
-    knn.fit(x_train, y_train)
-    y_pred = knn.predict(x_test)
-    print(summarize_classification(y_test, y_pred))
+    knn.set_params(**g)                 # Set the K value for the model
+    knn.fit(x_train, y_train)           # Train the model on training data
+    y_pred = knn.predict(x_test)        # Make predictions on the test set
+    print(summarize_classification(y_test, y_pred))  # Print model accuracy
+
 ```
 
     {'accuracy': 0.9611436950146628}
@@ -4815,20 +4917,24 @@ for g in KNN_parameter_grid:
 
 
 ```python
+# Train and return a KNN model with 7 neighbors
 def knn_fn(x_train, y_train, max_depth=None, max_features=None): 
-    
-    model = KNeighborsClassifier(n_neighbors = 7)
-    model.fit(x_train, y_train)
-    
-    return model
+    model = KNeighborsClassifier(n_neighbors=7)  # Initialize KNN with k=7
+    model.fit(x_train, y_train)                  # Train model on input data
+    return model                                 # Return trained model
 ```
 
 
 ```python
-result_dict['bankruptcy ~ knn_filtered3'] = build_model(knn_fn,
-                                                 'Bankrupt?',
-                                                   selected_features[filter_mask],
-                                                   Filtered3_df)
+# Train KNN (k=7) using selected features and store results in result_dict
+result_dict['bankruptcy ~ knn_filtered3'] = build_model(
+    knn_fn,                          # KNN function with 7 neighbors
+    'Bankrupt?',                     # Target variable
+    selected_features[filter_mask], # Selected feature names
+    Filtered3_df                     # Dataset with features and target
+)
+
+# Compare test results across all trained models
 compare_results()
 ```
 
@@ -4908,14 +5014,24 @@ V1 was the best in terms of accuracy with a close second being logistic regrissi
 
 
 ```python
+# Initialize a decision tree classifier with default settings
 dt = DecisionTreeClassifier()
 ```
 
 
 ```python
-DT_parameters = {'max_depth': [4,5,6,7,8,None], 'max_features':['sqrt','log2',None] }
+# Define a grid of hyperparameters for the decision tree model
+DT_parameters = {
+    'max_depth': [4, 5, 6, 7, 8, None],         # Try different tree depths
+    'max_features': ['sqrt', 'log2', None]     # Try different feature selection strategies
+}
+
+# Create a parameter grid from the dictionary
 DT_parameter_grid = ParameterGrid(DT_parameters)
+
+# Convert the grid into a list of all combinations
 list(DT_parameter_grid)
+
 ```
 
 
@@ -4944,11 +5060,13 @@ list(DT_parameter_grid)
 
 
 ```python
+# Iterate through all combinations of decision tree hyperparameters
 for g in DT_parameter_grid:
-    dt.set_params(**g)
-    dt.fit(x_train, y_train)
-    y_pred = dt.predict(x_test)
-    print(summarize_classification(y_test, y_pred))
+    dt.set_params(**g)               # Set the current parameter combination
+    dt.fit(x_train, y_train)         # Train the decision tree on training data
+    y_pred = dt.predict(x_test)     # Predict on the test set
+    print(summarize_classification(y_test, y_pred))  # Print accuracy summary
+
 ```
 
     {'accuracy': 0.9648093841642229}
@@ -4995,15 +5113,21 @@ dt_model = dt_model.fit(x_train,y_train)
 
 
 ```python
+# Visualize the trained decision tree using Graphviz
 import graphviz 
 from sklearn import tree
-dot_data = tree.export_graphviz(dt_model, out_file=None, 
-                      feature_names=list(x_train.columns),  
-                      class_names=[str(s) for s in y_train.unique()],  
-                      filled=True, rounded=True,  
-                      special_characters=True)  
-graph = graphviz.Source(dot_data)  
-graph 
+
+dot_data = tree.export_graphviz(
+    dt_model,                      # Trained decision tree model
+    out_file=None,                 # Output as string for Graphviz
+    feature_names=list(x_train.columns),  # Feature names for visualization
+    class_names=[str(s) for s in y_train.unique()],  # Class labels
+    filled=True, rounded=True, special_characters=True  # Styling options
+)
+
+graph = graphviz.Source(dot_data)  # Create Graphviz visualization
+graph                              # Display the graph
+
 ```
 
 
@@ -5017,6 +5141,7 @@ graph
 
 
 ```python
+#Render graph
 graph.render("decision_tree")
 ```
 
@@ -5035,6 +5160,7 @@ Note: Decsion Tree extracted from random forest made with V3 dataset
 
 
 ```python
+# View outputs
 print("Selected features:", selected_features)
 print("Filter mask:", filter_mask)
 print("Filtered features:", selected_features[filter_mask])
@@ -5154,6 +5280,7 @@ From the decision tree based on random forest of the V3 data we can see trhat 64
 
 ```python
 from IPython.display import FileLink
+#View image
 FileLink('tree.png')
 ```
 
