@@ -1,3 +1,4 @@
+## BDA-398B Final Project - Bankruptcy Classification
 This is my undergraduate project for my AI for Business course at the Lebanese American University. It looked at a kaggle dataset on bancruptcy in Taiwan.
 
 ```python
